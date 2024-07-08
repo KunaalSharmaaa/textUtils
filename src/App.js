@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import FormForText from './components/FormForText';
 import Alert from './components/Alert';
-import AboutComp from './components/About';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+// import AboutComp from './components/About';
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route
+// } from "react-router-dom";
 
 function App() {
 
@@ -43,18 +42,19 @@ function App() {
 
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Navbar title="TextUtils" aboutText="About Us" mode={mode} changeMode={changeMode} />
         <Alert alert={alert} />
         <div className="container my-3">
-          <Routes>
+        <FormForText heading="Enter your text to analyze" mode={mode} alert={alert} valAlert={valAlert}/>
+          {/* <Routes>
             <Route exact path="/about" element={<AboutComp/>}>
             </Route>
             <Route exact path="/" element={<FormForText heading="Enter your text to analyze" mode={mode} alert={alert} valAlert={valAlert}/>}>
             </Route>
-          </Routes>
+          </Routes> */}
         </div>
-      </Router>
+      {/* </Router> */}
     </>
   );
 }
