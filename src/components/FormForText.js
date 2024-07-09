@@ -53,9 +53,9 @@ export default function FormForText(props) {
       <div className="container my-5">
         <h3>Your text summary</h3>
         <p className="my-3">
-          {text.split(" ").length - 1} words and {text.length} characters
+          {text.split(" ").filter((element) => {return element.length!==0}).length} words and {text.length} characters
         </p>
-        <p>{(text.split(" ").length - 1) / 200} minutes required to read</p>
+        <p>{Math.round((text.split(" ").filter((element) => {return element.length!=0}).length)*0.3)} seconds required to read</p>
       </div>
     </>
   );
