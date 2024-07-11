@@ -40,13 +40,13 @@ export default function FormForText(props) {
             rows="10"
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={btnUpper}>
+        <button className="btn btn-primary mx-2 my-1" onClick={btnUpper}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-3" onClick={btnLower}>
+        <button className="btn btn-primary mx-2 my-1" onClick={btnLower}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary" onClick={btnClear}>
+        <button className="btn btn-primary mx-2 my-1" onClick={btnClear}>
           Clear Text
         </button>
       </div>
