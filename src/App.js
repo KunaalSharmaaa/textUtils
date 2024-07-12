@@ -4,25 +4,41 @@ import Navbar from "./components/Navbar";
 import FormForText from "./components/FormForText";
 import Alert from "./components/Alert";
 // import AboutComp from './components/About';
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route
-// } from "react-router-dom";
+
+let removeBodyClasses = () => {
+  document.body.classList.remove("bg-dark");
+  document.body.classList.remove("bg-light");
+  document.body.classList.remove("bg-primary");
+  document.body.classList.remove("bg-success");
+  document.body.classList.remove("bg-danger");
+  document.body.classList.remove("bg-warning");
+}
+
+let btnColor = "primary";
 
 function App() {
-  const [mode, setMode] = useState("light");
-  let changeMode = () => {
-    if (mode === "dark") {
-      setMode("light");
-      valAlert("success", "Light mode enabled");
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
-    } else {
-      setMode("dark");
-      valAlert("success", "Dark mode enabled");
+  let changeMode = (cls) => {
+    removeBodyClasses();
+    document.body.classList.add("bg-"+cls);
+    if (cls === "dark") {
+      valAlert("success", `${cls} mode enabled`);
       document.body.style.backgroundColor = "#042743";
       document.body.style.color = "white";
+      btnColor = "primary";
+    } else {
+      valAlert("success", `${cls} mode enabled`);
+      document.body.style.color = "black";
+      if (cls === "primary") {
+        btnColor = "success";
+      } else if (cls === "success") {
+        btnColor = "warning";
+      } else if (cls === "warning") {
+        btnColor = "danger";
+      } else if (cls === "danger") {
+        btnColor = "primary";
+      } else {
+        btnColor = "primary";
+      }
     }
   };
 
@@ -39,30 +55,21 @@ function App() {
 
   return (
     <>
-      {/* <Router> */}
       <Navbar
         title="TextUtils"
         aboutText="About Us"
-        mode={mode}
         changeMode={changeMode}
       />
       <Alert alert={alert} />
       <div className="container my-3">
         <FormForText
           heading="TextUtils - Word counter | Character counter | Lowercase to Uppercase"
-          mode={mode}
           alert={alert}
           valAlert={valAlert}
+          btnColor={btnColor}
         />
-        {/* <AboutComp mode={mode}/> */}
-        {/* <Routes>
-            <Route exact path="/about" element={<AboutComp/>}>
-            </Route>
-            <Route exact path="/" element={<FormForText heading="TextUtils - Word counter | Character counter | Lowercase to Uppercase | Uppercase to Lowercase" mode={mode} alert={alert} valAlert={valAlert}/>}>
-            </Route>
-          </Routes> */}
+        {/* <AboutComp /> */}
       </div>
-      {/* </Router> */}
     </>
   );
 }
