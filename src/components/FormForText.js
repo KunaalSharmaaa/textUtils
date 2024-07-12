@@ -17,7 +17,6 @@ export default function FormForText(props) {
   };
 
   let handleOnChange = (evt) => {
-    console.log("handle on change");
     setText(evt.target.value);
   };
 
@@ -40,20 +39,20 @@ export default function FormForText(props) {
             rows="10"
           ></textarea>
         </div>
-        <button disabled={text.length===0} className={`btn btn-${props.btnColor} mx-2 my-1`} onClick={btnUpper}>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={btnUpper}>
           Convert to Uppercase
         </button>
-        <button disabled={text.length===0} className={`btn btn-${props.btnColor} mx-2 my-1`} onClick={btnLower}>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={btnLower}>
           Convert to Lowercase
         </button>
-        <button disabled={text.length===0} className={`btn btn-${props.btnColor} mx-2 my-1`} onClick={btnClear}>
+        <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={btnClear}>
           Clear Text
         </button>
       </div>
       <div className="container my-5">
         <h3>Your text summary</h3>
         <p className="my-3">
-          {text.split(" ").filter((element) => {return element.length!==0}).length} words and {text.length} characters
+          {text.split(/\s+/).filter((element) => {return element.length!==0}).length} words and {text.length} characters
         </p>
         <p>{Math.round((text.split(" ").filter((element) => {return element.length!==0}).length)*0.3)} seconds required to read</p>
       </div>

@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+// import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
     <nav
-      className={`navbar navbar-expand-lg navbar-dark bg-dark`}
+      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
     >
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
@@ -24,7 +25,8 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              {/* active class highlights home forever(below)*/}
+              <a className="nav-link active" aria-current="page" href="/"> 
                 Home
               </a>
             </li>
@@ -34,62 +36,25 @@ export default function Navbar(props) {
               </a>
             </li>
           </ul>
-
-          <div className="d-flex">
-            <div
-              onClick={() => {
-                props.changeMode("primary");
-              }}
-              className="bg-primary rounded mx-2"
-              style={{height:"30px", width:"30px", cursor:"pointer", border:"3px solid #D3D3D3" }}
-            ></div>
+          <div
+            className={`form-check form-switch text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+          >
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              {props.mode === "light" ? "Dark Mode" : "Light Mode"}
+            </label>
+            <input
+              className="form-check-input"
+              onClick={props.changeMode}
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+            />
           </div>
-          <div className="d-flex">
-            <div
-              onClick={() => {
-                props.changeMode("success");
-              }}
-              className="bg-success rounded mx-2"
-              style={{height:"30px", width:"30px", cursor:"pointer", border:"3px solid #D3D3D3" }}
-            ></div>
-          </div>
-          <div className="d-flex">
-            <div
-              onClick={() => {
-                props.changeMode("danger");
-              }}
-              className="bg-danger rounded mx-2"
-              style={{height:"30px", width:"30px", cursor:"pointer", border:"3px solid #D3D3D3" }}
-            ></div>
-          </div>
-          <div className="d-flex">
-            <div
-              onClick={() => {
-                props.changeMode("warning");
-              }}
-              className="bg-warning rounded mx-2"
-              style={{height:"30px", width:"30px", cursor:"pointer", border:"3px solid #D3D3D3" }}
-            ></div>
-          </div>
-          <div className="d-flex">
-            <div
-              onClick={() => {
-                props.changeMode("light");
-              }}
-              className="bg-light rounded mx-2"
-              style={{height:"30px", width:"30px", cursor:"pointer", border:"3px solid #D3D3D3" }}
-            ></div>
-          </div>
-          <div className="d-flex">
-            <div
-              onClick={() => {
-                props.changeMode("dark");
-              }}
-              className="bg-dark rounded mx-2"
-              style={{height:"30px", width:"30px", cursor:"pointer", border:"3px solid #D3D3D3" }}
-            ></div>
-          </div>
-
         </div>
       </div>
     </nav>
@@ -98,10 +63,10 @@ export default function Navbar(props) {
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
-  aboutText: PropTypes.string
+  aboutText: PropTypes.string,
 };
 
 Navbar.defaultProps = {
   title: "Your title here",
-  aboutText: "About text here"
+  aboutText: "About text here",
 };
